@@ -54,6 +54,7 @@ public class SonicWave extends SoundAbility implements AddonAbility {
 
 	@Override
 	public void progress() {
+		player.playNote(player.getLocation(), Instrument.FLUTE, Note.sharp(2, Tone.F));
 		for (int j = 0; j < 10; j++) {
 			if (!player.isOnline() || player.isDead()) {
 				remove();
@@ -76,7 +77,6 @@ public class SonicWave extends SoundAbility implements AddonAbility {
 					if (bp != null && bp.hasElement(ProjectAddons.instance.getSoundElement())) {
 						ProjectAddons.instance.getParticleAdapter().displayColoredParticles(new HexColor("#000000"), loc, 1, 0, 0, 0, 0.0, 150);
 					}
-					p.playNote(loc, Instrument.FLUTE, Note.sharp(2, Tone.F));
 				}
 				
 				for (Entity e : GeneralMethods.getEntitiesAroundPoint(loc, 0.8)) {

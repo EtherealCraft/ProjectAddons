@@ -33,15 +33,18 @@ public class NinjaStance extends ChiAbility implements AddonAbility{
 		if (bPlayer.isOnCooldown(this)) {
 			return;
 		}
-		
-		ChiAbility stance = bPlayer.getStance();
-		if (stance != null) {
-			stance.remove();
-			if (stance instanceof NinjaStance) {
-				bPlayer.setStance(null);
-				return;
-			}
-		}
+
+		// the current state of this repository is not what we're using in the real server.
+		// I had to make these changes to build it, when trying to see if I could reduce dig's radius
+		// didn't work. But if we are going to need to change this again, here are those changes.
+//		StanceAbility stance = bPlayer.getStance();
+//		if (stance != null) {
+//			stance.remove();
+//			if (stance instanceof NinjaStance) {
+//				bPlayer.setStance(null);
+//				return;
+//			}
+//		}
 
 		PotionEffectAdapter effectAdapter = ProjectAddons.instance.getPotionEffectAdapter();
 		
@@ -52,7 +55,7 @@ public class NinjaStance extends ChiAbility implements AddonAbility{
 		effects.add(new PotionEffect(effectAdapter.getJumpBoostPotionEffectType(), 5, ProjectAddons.instance.getConfig().getInt("Abilities.Chi.NinjaStance.JumpAmplifier") + 1, true, false));
 		
 		start();
-		bPlayer.setStance(this);
+		//bPlayer.setStance(this);
 		GeneralMethods.displayMovePreview(player);
 		player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_HURT, 0.2F, 2F);
 	}
