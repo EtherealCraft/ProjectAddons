@@ -152,9 +152,9 @@ public class EarthKick extends EarthAbility implements AddonAbility, Listener{
 		Block b = player.getTargetBlock(getTransparentMaterialSet(), 3);
 		Material type = b.getType();
 		
-		if (TempBlock.isTempBlock(b)) {
-			return false;
-		}
+//		if (TempBlock.isTempBlock(b)) {
+//			return false;
+//		}
 		
 		if (!EarthAbility.isEarthbendable(type, bPlayer.canMetalbend(), bPlayer.canSandbend(), bPlayer.canLavabend())) {
 			return false;
