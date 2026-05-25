@@ -1,5 +1,6 @@
 package me.simplicitee.project.addons.ability.chi;
 
+import com.projectkorra.projectkorra.Element;
 import com.projectkorra.projectkorra.GeneralMethods;
 import com.projectkorra.projectkorra.ability.AddonAbility;
 import com.projectkorra.projectkorra.ability.ChiAbility;
@@ -91,6 +92,10 @@ public class NinjaStance extends ChiAbility implements AddonAbility, StanceAbili
 	@Override
 	public void progress() {
 		if (!player.isOnline() || player.isDead()) {
+			remove();
+			return;
+		}
+		if (!this.bPlayer.canBendIgnoreBinds(this) || !this.bPlayer.hasElement(Element.CHI)) {
 			remove();
 			return;
 		}

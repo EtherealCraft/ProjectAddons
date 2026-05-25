@@ -19,7 +19,7 @@ public class Camouflage extends ChiAbility implements PassiveAbility {
 
 	@Override
 	public void progress() {
-		if (!player.isSneaking()) {
+		if (!player.isSneaking() || !this.bPlayer.canBendPassive(this)) {
 			return;
 		}
 		
