@@ -470,6 +470,7 @@ public class ProjectAddons extends JavaPlugin {
 		// NinjaStance
 		config.addDefault("Abilities.Chi.NinjaStance.Enabled", true);
 		config.addDefault("Abilities.Chi.NinjaStance.Cooldown", 0);
+		config.addDefault("Abilities.Chi.NinjaStance.Duration", 20000);
 		config.addDefault("Abilities.Chi.NinjaStance.Stealth.Duration", 5000);
 		config.addDefault("Abilities.Chi.NinjaStance.Stealth.ChargeTime", 2000);
 		config.addDefault("Abilities.Chi.NinjaStance.Stealth.Cooldown", 8000);

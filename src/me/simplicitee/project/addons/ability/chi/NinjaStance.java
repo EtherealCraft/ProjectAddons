@@ -24,6 +24,8 @@ public class NinjaStance extends ChiAbility implements AddonAbility, StanceAbili
 	
 	@Attribute(Attribute.DURATION)
 	private long stealthDuration;
+	@Attribute(Attribute.DURATION)
+	private long duration;
 	
 	private boolean stealth, stealthReady, stealthStarted;
 	private long stealthStart, stealthChargeTime, stealthReadyStart, stealthCooldown;
@@ -47,7 +49,8 @@ public class NinjaStance extends ChiAbility implements AddonAbility, StanceAbili
 		}
 
 		PotionEffectAdapter effectAdapter = ProjectAddons.instance.getPotionEffectAdapter();
-		
+
+		duration = ProjectAddons.instance.getConfig().getLong("Abilities.Chi.NinjaStance.Duration");
 		stealthDuration = ProjectAddons.instance.getConfig().getLong("Abilities.Chi.NinjaStance.Stealth.Duration");
 		stealthChargeTime = ProjectAddons.instance.getConfig().getLong("Abilities.Chi.NinjaStance.Stealth.ChargeTime");
 		stealthCooldown = ProjectAddons.instance.getConfig().getLong("Abilities.Chi.NinjaStance.Stealth.Cooldown");
@@ -91,7 +94,12 @@ public class NinjaStance extends ChiAbility implements AddonAbility, StanceAbili
 			remove();
 			return;
 		}
-		
+
+		if (duration != -1 && System.currentTimeMillis() > getStartTime() + duration) {
+			remove();
+			return;
+		}
+
 		if (stealth) {
 			if (System.currentTimeMillis() >= stealthStart + stealthChargeTime) {
 				stealthReady = true;
