@@ -145,7 +145,12 @@ public class MainListener implements Listener {
 				new ShrapnelShot(player);
 			}
 		} else if (canBend(player, "NinjaStance")) {
-			new NinjaStance(player);
+			if (CoreAbility.hasAbility(player, NinjaStance.class)) {
+				NinjaStance stance = CoreAbility.getAbility(player, NinjaStance.class);
+				stance.remove();
+			} else {
+				new NinjaStance(player);
+			}
 		} else if (canBend(player, "AcrobatStance") || canBend(player, "WarriorStance")) {
 			if (CoreAbility.hasAbility(player, NinjaStance.class)) {
 				CoreAbility.getAbility(player, NinjaStance.class).remove();

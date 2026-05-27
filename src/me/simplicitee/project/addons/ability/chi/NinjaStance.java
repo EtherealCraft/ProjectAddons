@@ -55,9 +55,9 @@ public class NinjaStance extends ChiAbility implements AddonAbility, StanceAbili
 		stealthDuration = ProjectAddons.instance.getConfig().getLong("Abilities.Chi.NinjaStance.Stealth.Duration");
 		stealthChargeTime = ProjectAddons.instance.getConfig().getLong("Abilities.Chi.NinjaStance.Stealth.ChargeTime");
 		stealthCooldown = ProjectAddons.instance.getConfig().getLong("Abilities.Chi.NinjaStance.Stealth.Cooldown");
-		effects.add(new PotionEffect(PotionEffectType.SPEED, 5, ProjectAddons.instance.getConfig().getInt("Abilities.Chi.NinjaStance.SpeedAmplifier") + 1, true, false));
-		effects.add(new PotionEffect(effectAdapter.getJumpBoostPotionEffectType(), 5, ProjectAddons.instance.getConfig().getInt("Abilities.Chi.NinjaStance.JumpAmplifier") + 1, true, false));
-		
+		effects.add(new PotionEffect(PotionEffectType.SPEED, 5, ProjectAddons.instance.getConfig().getInt("Abilities.Chi.NinjaStance.SpeedAmplifier") - 1, true, false));
+		effects.add(new PotionEffect(effectAdapter.getJumpBoostPotionEffectType(), 5, ProjectAddons.instance.getConfig().getInt("Abilities.Chi.NinjaStance.JumpAmplifier") - 1, true, false));
+		this.bPlayer.setStance(this);
 		start();
 		//bPlayer.setStance(this);
 		GeneralMethods.displayMovePreview(player);
@@ -136,6 +136,8 @@ public class NinjaStance extends ChiAbility implements AddonAbility, StanceAbili
 	@Override
 	public void remove() {
 		super.remove();
+		this.player.playSound(this.player.getLocation(), Sound.ENTITY_ENDER_DRAGON_SHOOT, 0.5F, 2F);
+		bPlayer.setStance(null);
 		bPlayer.addCooldown(this);
 	}
 	
